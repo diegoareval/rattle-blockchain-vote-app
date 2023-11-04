@@ -1,0 +1,27 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: DAO
+    network: mumbai
+    source:
+      address: "0x449F2e4F9Eb12C06cf5405C487E7D0502B546E17"
+      abi: DAO
+      startBlock: 42008359
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ProposalCreated
+        - Voted
+      abis:
+        - name: DAO
+          file: ./abis/DAO.json
+      eventHandlers:
+        - event: ProposalCreated(indexed uint256,string)
+          handler: handleProposalCreated
+        - event: Voted(indexed uint256,address,uint256)
+          handler: handleVoted
+      file: ./src/dao.ts

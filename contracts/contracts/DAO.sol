@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -19,6 +20,10 @@ contract DAO {
 
     Proposal[] public proposals;
     address public admin;
+
+    // Events for proposal creation and voting
+    event ProposalCreated(uint256 indexed proposalId, string title);
+    event Voted(uint256 indexed proposalId, address voter, uint256 vote);
 
     constructor(address _tokenAddress) {
         token = IERC20(_tokenAddress);
@@ -46,6 +51,9 @@ contract DAO {
                 executed: false
             })
         );
+
+        // Emit an event when a proposal is created
+        emit ProposalCreated(proposalId, _title);
     }
 
     function vote(uint256 _proposalId, uint256 _vote) public {
@@ -59,5 +67,8 @@ contract DAO {
         } else if (_vote == 2) {
             proposal.votesForOptionB += 1;
         }
+
+        // Emit an event when a vote is cast
+        emit Voted(_proposalId, msg.sender, _vote);
     }
 }
