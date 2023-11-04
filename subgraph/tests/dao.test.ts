@@ -5,7 +5,7 @@ import {
   clearStore,
   beforeAll,
   afterAll
-} from "matchstick-as/assembly/index"
+} from "matchstick-as"
 import { BigInt, Address } from "@graphprotocol/graph-ts"
 import { ProposalCreated } from "../generated/schema"
 import { ProposalCreated as ProposalCreatedEvent } from "../generated/DAO/DAO"
