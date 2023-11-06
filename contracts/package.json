@@ -9,6 +9,7 @@
     "dotenv": "^16.3.1",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.5.1",
+    "etherscan-api": "^10.3.0",
     "hardhat": "^2.7.0"
   },
   "scripts": {
@@ -16,10 +17,14 @@
     "compile": "npx hardhat compile",
     "seed": "node scripts/seed.js",
     "deploy:localhost": "npx hardhat run scripts/deploy.js --network localhost",
+    "verify": "node scripts/verify.js",
+    "flatten": "npx hardhat flatten contracts/DAO.sol > contracts/DAO.sol",
+    "verify:mumbai": "npx hardhat verify --network mumbai",
     "deploy:testnet": "npx hardhat run scripts/deploy.js --network mumbai",
     "deploy:mainnet": "npx hardhat run scripts/deploy.js --network mainnet"
   },
   "devDependencies": {
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
     "chai": "^4.3.10"
   }
 }

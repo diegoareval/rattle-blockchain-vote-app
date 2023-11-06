@@ -1,17 +1,17 @@
 const ethers = require('ethers');
 const fs = require("fs");
 const privateKey = fs.readFileSync('.secret').toString();
-const daoContractABI = require("../artifacts/contracts/DAO.sol/DAO.json").abi; // Use require to load the ABI
-const projectId = ''
-const contractAddress = ''
+const daoContractABI = require("../artifacts/contracts/DAO.sol/DAO.json").abi;
+const projectId = fs.readFileSync('.infura_project_id').toString();
+const contractAddress = fs.readFileSync('.contract_address').toString();
 async function main() {
   const provider = new ethers.providers.JsonRpcProvider(`https://polygon-mumbai.infura.io/v3/${projectId}`);
   const wallet = new ethers.Wallet(privateKey, provider);
   const contract = new ethers.Contract(contractAddress, daoContractABI, wallet);
 
   // Create a proposal
-  const proposalTitle = 'New Proposal';
-  const proposalDescription = 'This is a new proposal for testing.';
+  const proposalTitle = 'RatherLab';
+  const proposalDescription = 'This is an important blockachain company.';
   const proposalDeadline = Math.floor(Date.now() / 1000) + 86400; // Proposal closes in 24 hours
   const minimumVotes = 10;
 
