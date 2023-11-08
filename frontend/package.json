@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.7",
+    "@redshank/fetch-resolver": "^1.0.7",
+    "@usedapp/core": "^0.7.3",
+    "@web3-react/abstract-connector": "^6.0.7",
     "@web3-react/core": "^8.2.3",
     "@web3-react/injected-connector": "^6.0.7",
     "axios": "^1.6.0",
     "ethers": "^6.8.1",
+    "graphql": "^16.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "web3": "^4.2.2"
