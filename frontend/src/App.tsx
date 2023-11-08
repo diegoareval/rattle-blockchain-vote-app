@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import './App.css'
 import { GET_PROPOSALS_AND_VOTES } from './graphql/queries/dao';
+import HomePage from './pages/HomeTemplate';
 
 function App() {
   const { loading, error, data } = useQuery(GET_PROPOSALS_AND_VOTES);
@@ -12,7 +13,7 @@ function App() {
   console.log("proposalCreateds", proposalCreateds)
   console.log("voteds", voteds)
 
-  return <div>hola</div>
+  return <HomePage/>
 }
 
 export default App
