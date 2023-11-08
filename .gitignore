@@ -29,6 +29,8 @@ coverage
 coverage.json
 typechain
 .secret
+.infura_project_id
+.etherscan_api_key
 
 #Hardhat files
 cache
