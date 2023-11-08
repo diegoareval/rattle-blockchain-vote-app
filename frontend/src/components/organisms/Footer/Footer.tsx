@@ -8,9 +8,10 @@ const Container = styled.div`
 `;
 
 export const Footer: React.FC = ()=> {
+  const currentYear = new Date().getFullYear();
   return (
     <Container>
-      <p>@2021 Ratterlab company</p>
+      <p>@{currentYear} Ratterlab company</p>
     </Container>
   );
 }
