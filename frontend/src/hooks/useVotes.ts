@@ -10,20 +10,26 @@ export function useVotesContract() {
 
   useEffect(() => {
     if (provider) {
-      const signer = provider?.getSigner()
-      const contract = new Contract(
-        VOTES_CONTRACT_ADDRESS,
-        VOTES_CONTRACT_ABI.abi,
-        signer as any,
-      )
-      setVotesContract(contract)
-      checkAdminStatus(signer)
+      initData()
     }
   }, [provider])
 
-  const checkAdminStatus = async (signer: any) => {
-    if (signer) {
-      const adminStatus = await votesContract?.isAdmin(signer.getAddress())
+  const initData = async () => {
+    const signer = provider?.getSigner()
+    const address = await signer?.getAddress()
+
+    const contract = new Contract(
+      VOTES_CONTRACT_ADDRESS,
+      VOTES_CONTRACT_ABI.abi,
+      signer as any,
+    )
+    setVotesContract(contract)
+    if (address) checkAdminStatus(address)
+  }
+
+  const checkAdminStatus = async (address: string): Promise<void> => {
+    if (address) {
+      const adminStatus = await votesContract?.isAdmin(address)
       setIsAdmin(adminStatus)
     }
   }
@@ -40,8 +46,7 @@ export function useVotesContract() {
       if (!isAdmin) {
         throw new Error('Only admin can create proposals')
       }
-
-      const result = await votesContract?.createProposal(
+      return votesContract?.createProposal(
         title,
         description,
         proposalDeadline,
@@ -49,7 +54,6 @@ export function useVotesContract() {
         optionA,
         optionB,
       )
-      return result
     } catch (error) {
       console.error('Error creating proposal:', error)
       return null
@@ -58,8 +62,7 @@ export function useVotesContract() {
 
   const createVote = async (proposalId: string, voteOption: number) => {
     try {
-      const result = await votesContract?.createVote(proposalId, voteOption)
-      return result
+      return votesContract?.createVote(proposalId, voteOption)
     } catch (error) {
       console.error('Error creating vote:', error)
       return null
