@@ -1,6 +1,6 @@
 import { Proposal, Voted } from '../../types'
 
-type ProposalWithVotes = Proposal & {
+export type ProposalWithVotes = Proposal & {
   votes: Voted[]
 }
 

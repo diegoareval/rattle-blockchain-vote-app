@@ -1,26 +1,23 @@
+import { useQuery } from '@apollo/client'
 import * as React from 'react'
-import styled from 'styled-components'
+import { ErrorMessage, Loading } from '../components/atoms/Messages'
 import HomeTemplate from '../components/templates/HomeTemplate'
+import { GET_PROPOSALS_AND_VOTES } from '../graphql/queries/dao'
+import { insertVotesIntoProposals } from '../shared/utils'
+import { GraphQLVoteResponse } from '../types'
 
-const H1 = styled.h1`
-  font-size: 3rem;
-`
-
-const CenteredContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  height: 40vh;
-`
 
 const HomePage: React.FC = () => {
+  const { loading, error, data } = useQuery(GET_PROPOSALS_AND_VOTES)
+
+  if (loading) return <Loading message="..." />
+  if (error) return <ErrorMessage message={error.message} />
+
+  const { proposalCreateds, voteds } = data as GraphQLVoteResponse
+  const proposals = insertVotesIntoProposals(proposalCreateds, voteds)
+
   return (
-    <HomeTemplate>
-       <CenteredContainer>
-        <div>
-          <H1>Welcome to DAO App</H1>
-        </div>
-      </CenteredContainer>
-    </HomeTemplate>
+    <HomeTemplate proposals={proposals} />
   )
 }
 

@@ -3,5 +3,8 @@ export type Proposal = {
     proposalId: string;
     title: string;
     blockNumber: string;
+    description: string;
+    optionA: string;
+    optionB: string;
   };
   
