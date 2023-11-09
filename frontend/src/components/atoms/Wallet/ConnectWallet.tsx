@@ -1,7 +1,7 @@
 import { useEthers } from '@usedapp/core';
 import styled from 'styled-components';
+import { shortenAddress } from '../../../shared/utils';
 
-const shortenAddress = (addr: string) => `${addr.slice(0, 5)}...${addr.slice(-4)}`;
 
 const Container = styled.div`
   display: flex;
@@ -28,24 +28,35 @@ const ConnectButton = styled.button`
   }
 `;
 
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
+
 export const ConnectWallet: React.FC = () => {
   const { activateBrowserWallet, deactivate, account } = useEthers();
+  const isMetaMaskInstalled = typeof window.ethereum !== 'undefined';
 
   return (
     <Container>
+    {isMetaMaskInstalled && (
       <WalletInfo>
-        {!account ? "connect wallet" : `Connected Wallet: ${shortenAddress(account)}`}
+        {!account ? "Connect wallet" : `Connected Wallet: ${shortenAddress(account)}`}
       </WalletInfo>
-      {!account ? (
-        <ConnectButton onClick={() => activateBrowserWallet()}>
-          Connect
-        </ConnectButton>
-      ) : (
+    )}
+    {isMetaMaskInstalled && !account ? (
+      <ConnectButton onClick={() => activateBrowserWallet()}>
+        Connect
+      </ConnectButton>
+    ) : (
+      isMetaMaskInstalled && (
         <ConnectButton onClick={() => deactivate()}>
           Disconnect
         </ConnectButton>
-      )}
-    </Container>
+      )
+    )}
+  </Container>
   );
 };
 

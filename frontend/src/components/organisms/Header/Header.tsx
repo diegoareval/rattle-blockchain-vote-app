@@ -1,8 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
 import { ConnectWallet } from "../../atoms/Wallet";
-import {Navigation} from "./Navigation";
-
 const Container = styled.div`
   background-color: black;
   padding: 20px 20px;

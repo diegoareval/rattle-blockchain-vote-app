@@ -10,14 +10,13 @@ export interface MainProviderProps {
 export const MainProvider = ({ children }: MainProviderProps) => {
   return (
     <ApolloProvider client={client}>
-      {' '}
       <QueryProvider
         config={{
           baseURL: import.meta.env.VITE_API_BASE,
         }}
       >
         <DAppProvider config={configWeb3}>{children}</DAppProvider>
-      </QueryProvider>{' '}
+      </QueryProvider>
     </ApolloProvider>
   )
 }
