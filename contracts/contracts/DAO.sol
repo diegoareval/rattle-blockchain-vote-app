@@ -71,4 +71,8 @@ contract DAO {
         // Emit an event when a vote is cast
         emit Voted(_proposalId, msg.sender, _vote);
     }
+
+    function isAdmin(address _address) external view returns (bool) {
+        return _address == admin;
+    }
 }
