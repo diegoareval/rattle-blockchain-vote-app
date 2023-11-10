@@ -61,11 +61,10 @@ export function useVotesContract() {
 
   const createVote = async (proposalId: string, voteOption: number) => {
     try {
-      console.log("votesContract", votesContract)
-      return votesContract?.createVote(proposalId, voteOption)
+      return votesContract?.vote(proposalId, voteOption)
     } catch (error) {
-      console.error('Error creating vote:', error)
-      return null
+      console.error('Error creating vote:', error.message)
+      return;
     }
   }
 

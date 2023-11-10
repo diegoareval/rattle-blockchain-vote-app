@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { useVotesContract } from '../../../hooks/useVotes'
-import { useVoteV1 } from '../../../hooks/useVotev1'
 import { ProposalWithVotes } from '../../../shared/utils'
 import { formatTimestamp, isProposalClosed } from '../../../shared/utils/date'
 
@@ -55,13 +54,15 @@ interface ProposalListProps {
 }
 
 export const ProposalList: React.FC<ProposalListProps> = ({ proposals, refetch }) => {
-  const {account} = useVotesContract()
-  const {createVote} = useVoteV1()
-  console.log("account", account)
+  const { createVote} = useVotesContract()
   const onVote = async (id: string, option: string) => {
     const result = await createVote(id, parseInt(option))
-    console.log("result", result)
+    if(result){
     refetch();
+    // show success alert
+    } else {
+      // show error alert
+    }
   }
   return (
     <List>
@@ -76,10 +77,10 @@ export const ProposalList: React.FC<ProposalListProps> = ({ proposals, refetch }
           </div>
           {
             !isProposalClosed(proposal) && (<VoteOptions>
-              <VoteButton onClick={() => onVote(proposal.id, '1')}>
+              <VoteButton onClick={() => onVote(proposal.proposalId, '1')}>
                 Vote for A
               </VoteButton>
-              <VoteButton onClick={() => onVote(proposal.id, '2')}>
+              <VoteButton onClick={() => onVote(proposal.proposalId, '2')}>
                 Vote for B
               </VoteButton>
             </VoteOptions>)
