@@ -52,8 +52,8 @@ export const ProposalList: React.FC<ProposalListProps> = ({ proposals }) => {
                     <h3>{proposal.title}</h3>
                     <p>{proposal.description || "test description"}</p>
                     <VoteOptions>
-                        <VoteButton onClick={() => onVote(proposal.id, 'A')}>Vote for A</VoteButton>
-                        <VoteButton onClick={() => onVote(proposal.id, 'B')}>Vote for B</VoteButton>
+                        <VoteButton onClick={() => onVote(proposal.id, '1')}>Vote for A</VoteButton>
+                        <VoteButton onClick={() => onVote(proposal.id, '2')}>Vote for B</VoteButton>
                     </VoteOptions>
 
                 </ListItem>

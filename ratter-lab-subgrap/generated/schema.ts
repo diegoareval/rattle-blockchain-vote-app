@@ -93,6 +93,84 @@ export class ProposalCreated extends Entity {
     this.set("description", Value.fromString(value));
   }
 
+  get proposalDeadline(): BigInt {
+    let value = this.get("proposalDeadline");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set proposalDeadline(value: BigInt) {
+    this.set("proposalDeadline", Value.fromBigInt(value));
+  }
+
+  get minimumVotes(): BigInt {
+    let value = this.get("minimumVotes");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set minimumVotes(value: BigInt) {
+    this.set("minimumVotes", Value.fromBigInt(value));
+  }
+
+  get votesForOptionA(): BigInt {
+    let value = this.get("votesForOptionA");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set votesForOptionA(value: BigInt) {
+    this.set("votesForOptionA", Value.fromBigInt(value));
+  }
+
+  get votesForOptionB(): BigInt {
+    let value = this.get("votesForOptionB");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set votesForOptionB(value: BigInt) {
+    this.set("votesForOptionB", Value.fromBigInt(value));
+  }
+
+  get closed(): boolean {
+    let value = this.get("closed");
+    if (!value || value.kind == ValueKind.NULL) {
+      return false;
+    } else {
+      return value.toBoolean();
+    }
+  }
+
+  set closed(value: boolean) {
+    this.set("closed", Value.fromBoolean(value));
+  }
+
+  get executed(): boolean {
+    let value = this.get("executed");
+    if (!value || value.kind == ValueKind.NULL) {
+      return false;
+    } else {
+      return value.toBoolean();
+    }
+  }
+
+  set executed(value: boolean) {
+    this.set("executed", Value.fromBoolean(value));
+  }
+
   get blockNumber(): BigInt {
     let value = this.get("blockNumber");
     if (!value || value.kind == ValueKind.NULL) {

@@ -11,7 +11,7 @@ async function main() {
 
   // Create a proposal
   const proposalTitle = 'RatherLab';
-  const proposalDescription = 'This is an important blockachain company.';
+  const proposalDescription = 'This is an important blockchain company.';
   const proposalDeadline = Math.floor(Date.now() / 1000) + 86400; // Proposal closes in 24 hours
   const minimumVotes = 10;
 

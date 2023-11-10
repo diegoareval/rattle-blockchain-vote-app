@@ -1,10 +1,12 @@
 export type Proposal = {
     id: string;
     proposalId: string;
+    proposalDeadline: string;
     title: string;
     blockNumber: string;
     description: string;
-    optionA: string;
-    optionB: string;
+    minimumVotes: string;
+    votesForOptionA: string;
+    votesForOptionB: string;
   };
   

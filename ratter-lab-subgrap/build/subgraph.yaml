@@ -6,9 +6,9 @@ dataSources:
     name: DAO
     network: mumbai
     source:
-      address: "0xd0BF58854D452CfD630513Ba7c2c049AFd15867c"
+      address: "0xD5451e19a234547e35D9fB51d3c8396662710670"
       abi: DAO
-      startBlock: 42008359
+      startBlock: 42234160
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
