@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { useVotesContract } from '../../../hooks/useVotes'
+import { useVoteV1 } from '../../../hooks/useVotev1'
 import { ProposalWithVotes } from '../../../shared/utils'
 import { formatTimestamp, isProposalClosed } from '../../../shared/utils/date'
 
@@ -54,11 +55,12 @@ interface ProposalListProps {
 }
 
 export const ProposalList: React.FC<ProposalListProps> = ({ proposals, refetch }) => {
-  const {account, createVote} = useVotesContract()
+  const {account} = useVotesContract()
+  const {createVote} = useVoteV1()
   console.log("account", account)
-  const onVote = (id: string, option: string) => {
-    console.log('id', id)
-    console.log('option', option)
+  const onVote = async (id: string, option: string) => {
+    const result = await createVote(id, parseInt(option))
+    console.log("result", result)
     refetch();
   }
   return (

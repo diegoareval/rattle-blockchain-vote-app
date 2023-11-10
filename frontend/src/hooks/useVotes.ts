@@ -61,6 +61,7 @@ export function useVotesContract() {
 
   const createVote = async (proposalId: string, voteOption: number) => {
     try {
+      console.log("votesContract", votesContract)
       return votesContract?.createVote(proposalId, voteOption)
     } catch (error) {
       console.error('Error creating vote:', error)
