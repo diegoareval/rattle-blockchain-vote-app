@@ -15,7 +15,6 @@ export function useVotesContract() {
 
   const initData = async () => {
     const signer = provider?.getSigner()
-  //  const address = await signer?.getAddress()
 
     const contract = new Contract(
       VOTES_CONTRACT_ADDRESS,
@@ -23,47 +22,14 @@ export function useVotesContract() {
       signer as any,
     )
     setVotesContract(contract)
-   // if (address) checkAdminStatus(address)
   }
 
-  // const checkAdminStatus = async (address: string): Promise<void> => {
-  //   if (address) {
-  //     const adminStatus = await votesContract?.isAdmin(address)
-  //     setIsAdmin(adminStatus)
-  //   }
-  // }
-
-  // const createProposal = async (
-  //   title: string,
-  //   description: string,
-  //   proposalDeadline: number,
-  //   minimumVotes: number,
-  //   optionA: string,
-  //   optionB: string,
-  // ) => {
-  //   try {
-  //     if (!isAdmin) {
-  //       throw new Error('Only admin can create proposals')
-  //     }
-  //     return votesContract?.createProposal(
-  //       title,
-  //       description,
-  //       proposalDeadline,
-  //       minimumVotes,
-  //       optionA,
-  //       optionB,
-  //     )
-  //   } catch (error) {
-  //     console.error('Error creating proposal:', error)
-  //     return null
-  //   }
-  // }
 
   const createVote = async (proposalId: string, voteOption: number) => {
     try {
       return votesContract?.vote(proposalId, voteOption)
     } catch (error) {
-      console.error('Error creating vote:', error.message)
+      console.error('Error creating vote:', error)
       return null
     }
   }
