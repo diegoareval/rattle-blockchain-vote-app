@@ -6,7 +6,7 @@ dataSources:
     name: DAO
     network: mumbai
     source:
-      address: "0xD5451e19a234547e35D9fB51d3c8396662710670"
+      address: "0x13652B5Db768ECA721485c68dF275CE09a658483"
       abi: DAO
       startBlock: 42234160
     mapping:

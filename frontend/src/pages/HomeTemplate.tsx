@@ -8,7 +8,7 @@ import { GraphQLVoteResponse } from '../types'
 
 
 const HomePage: React.FC = () => {
-  const { loading, error, data } = useQuery(GET_PROPOSALS_AND_VOTES)
+  const { loading, error, data, refetch } = useQuery(GET_PROPOSALS_AND_VOTES)
 
   if (loading) return <Loading message="Loading..." />
   if (error) return <ErrorMessage message={error.message} />
@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
   const proposals = insertVotesIntoProposals(proposalCreateds, voteds)
 
   return (
-    <HomeTemplate proposals={proposals} />
+    <HomeTemplate refetch={refetch} proposals={proposals} />
   )
 }
 

@@ -7,16 +7,17 @@ import { ProposalWithVotes } from '../../shared/utils'
 
 interface HomeTemplateProps {
   proposals: ProposalWithVotes[];
+  refetch: ()=> void
 }
 const HomeTemplate: React.FC<HomeTemplateProps> = ({
-   proposals
+   proposals, refetch
 }: HomeTemplateProps) => {
   return (
     <div className="App">
       <Header />
       <main>
         <Hero />
-        <ProposalList proposals={proposals} />
+        <ProposalList refetch={refetch} proposals={proposals} />
       </main>
       <Footer />
     </div>
