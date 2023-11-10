@@ -34,7 +34,7 @@ export  const Hero: React.FC = () => {
         <p>
         We build stellar products with top-tier technology experts for innovative businesses worldwide.
         </p>
-        <a href="#"> Learn more...</a>
+        <a href="https://www.ratherlabs.com/"> Learn more...</a>
       </Wrapper>
     </Container>
   );
