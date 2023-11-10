@@ -6,7 +6,7 @@ dataSources:
     name: DAO
     network: mumbai
     source:
-      address: "0x449F2e4F9Eb12C06cf5405C487E7D0502B546E17"
+      address: "0xd0BF58854D452CfD630513Ba7c2c049AFd15867c"
       abi: DAO
       startBlock: 42008359
     mapping:
@@ -20,7 +20,7 @@ dataSources:
         - name: DAO
           file: ./abis/DAO.json
       eventHandlers:
-        - event: ProposalCreated(indexed uint256,string)
+        - event: ProposalCreated(indexed uint256,string,string,uint256,uint256,uint256,uint256,bool,bool)
           handler: handleProposalCreated
         - event: Voted(indexed uint256,address,uint256)
           handler: handleVoted

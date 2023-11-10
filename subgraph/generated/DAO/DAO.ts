@@ -30,6 +30,34 @@ export class ProposalCreated__Params {
   get title(): string {
     return this._event.parameters[1].value.toString();
   }
+
+  get description(): string {
+    return this._event.parameters[2].value.toString();
+  }
+
+  get proposalDeadline(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get minimumVotes(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get votesForOptionA(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+
+  get votesForOptionB(): BigInt {
+    return this._event.parameters[6].value.toBigInt();
+  }
+
+  get closed(): boolean {
+    return this._event.parameters[7].value.toBoolean();
+  }
+
+  get executed(): boolean {
+    return this._event.parameters[8].value.toBoolean();
+  }
 }
 
 export class Voted extends ethereum.Event {
@@ -160,6 +188,25 @@ export class DAO extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  isAdmin(_address: Address): boolean {
+    let result = super.call("isAdmin", "isAdmin(address):(bool)", [
+      ethereum.Value.fromAddress(_address)
+    ]);
+
+    return result[0].toBoolean();
+  }
+
+  try_isAdmin(_address: Address): ethereum.CallResult<boolean> {
+    let result = super.tryCall("isAdmin", "isAdmin(address):(bool)", [
+      ethereum.Value.fromAddress(_address)
+    ]);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
   proposals(param0: BigInt): DAO__proposalsResult {

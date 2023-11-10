@@ -22,7 +22,17 @@ contract DAO {
     address public admin;
 
     // Events for proposal creation and voting
-    event ProposalCreated(uint256 indexed proposalId, string title);
+    event ProposalCreated(
+        uint256 indexed proposalId,
+        string title,
+        string description,
+        uint256 proposalDeadline,
+        uint256 minimumVotes,
+        uint256 votesForOptionA,
+        uint256 votesForOptionB,
+        bool closed,
+        bool executed
+    );
     event Voted(uint256 indexed proposalId, address voter, uint256 vote);
 
     constructor(address _tokenAddress) {
@@ -53,7 +63,17 @@ contract DAO {
         );
 
         // Emit an event when a proposal is created
-        emit ProposalCreated(proposalId, _title);
+        emit ProposalCreated(
+            proposalId,
+            _title,
+            _description,
+            _proposalDeadline,
+            _minimumVotes,
+            0,
+            0,
+            false,
+            false
+        );
     }
 
     function vote(uint256 _proposalId, uint256 _vote) public {

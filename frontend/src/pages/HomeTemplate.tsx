@@ -10,7 +10,7 @@ import { GraphQLVoteResponse } from '../types'
 const HomePage: React.FC = () => {
   const { loading, error, data } = useQuery(GET_PROPOSALS_AND_VOTES)
 
-  if (loading) return <Loading message="..." />
+  if (loading) return <Loading message="Loading..." />
   if (error) return <ErrorMessage message={error.message} />
 
   const { proposalCreateds, voteds } = data as GraphQLVoteResponse

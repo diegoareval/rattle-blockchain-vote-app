@@ -11,6 +11,12 @@ export function handleProposalCreated(event: ProposalCreatedEvent): void {
   entity.proposalId = event.params.proposalId
   entity.title = event.params.title
   entity.description = event.params.description
+  entity.proposalDeadline = event.params.proposalDeadline
+  entity.minimumVotes = event.params.minimumVotes
+  entity.votesForOptionA = event.params.votesForOptionA
+  entity.votesForOptionB = event.params.votesForOptionB
+  entity.closed = event.params.closed
+  entity.executed = event.params.executed
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp

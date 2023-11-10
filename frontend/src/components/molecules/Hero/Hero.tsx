@@ -30,7 +30,6 @@ export  const Hero: React.FC = () => {
   return (
     <Container>
       <Wrapper>
-          
         <h1>RatterLabs</h1>
         <p>
         We build stellar products with top-tier technology experts for innovative businesses worldwide.
