@@ -3,7 +3,9 @@ import HomePage from './pages/HomeTemplate'
 
 function App() {
   
-  return <HomePage />
+  return <>
+  <HomePage />
+  </>
 }
 
 export default App

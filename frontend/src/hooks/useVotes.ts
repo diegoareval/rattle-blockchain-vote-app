@@ -64,7 +64,7 @@ export function useVotesContract() {
       return votesContract?.vote(proposalId, voteOption)
     } catch (error) {
       console.error('Error creating vote:', error.message)
-      return;
+      return null
     }
   }
 

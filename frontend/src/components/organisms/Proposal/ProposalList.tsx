@@ -59,9 +59,9 @@ export const ProposalList: React.FC<ProposalListProps> = ({ proposals, refetch }
     const result = await createVote(id, parseInt(option))
     if(result){
     refetch();
-    // show success alert
+    console.log("success")
     } else {
-      // show error alert
+      console.error('Connection was cancelled, try again');
     }
   }
   return (
