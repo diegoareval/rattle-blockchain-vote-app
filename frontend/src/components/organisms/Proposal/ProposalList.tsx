@@ -41,27 +41,31 @@ const StatusBadge = styled.span`
   border-radius: 5px;
   color: #fff;
   font-weight: bold;
+  background-color: red;
 `
 
 const TotalVotes = styled.span`
   margin-top: 10px;
   font-weight: bold;
-`;
+`
 
 interface ProposalListProps {
   proposals: ProposalWithVotes[]
-  refetch: ()=> void
+  refetch: () => void
 }
 
-export const ProposalList: React.FC<ProposalListProps> = ({ proposals, refetch }) => {
-  const { createVote} = useVotesContract()
+export const ProposalList: React.FC<ProposalListProps> = ({
+  proposals,
+  refetch,
+}) => {
+  const { createVote } = useVotesContract()
   const onVote = async (id: string, option: string) => {
     const result = await createVote(id, parseInt(option))
-    if(result){
-    refetch();
-    console.log("success")
+    if (result) {
+      refetch()
+      console.log('success')
     } else {
-      console.error('Connection was cancelled, try again');
+      console.error('Connection was cancelled, try again')
     }
   }
   return (
@@ -69,22 +73,25 @@ export const ProposalList: React.FC<ProposalListProps> = ({ proposals, refetch }
       {proposals.map((proposal) => (
         <ListItem key={proposal.id}>
           <h3>{proposal.title}</h3>
-          <p>{proposal.description || 'test description'}</p>
           <div>
             {isProposalClosed(proposal) && (
-              <StatusBadge style={{ backgroundColor: 'red' }}>Closed: {formatTimestamp(parseInt(proposal.proposalDeadline))} </StatusBadge>
+              <StatusBadge>
+                Closed: {formatTimestamp(parseInt(proposal.proposalDeadline))}{' '}
+              </StatusBadge>
             )}
           </div>
-          {
-            !isProposalClosed(proposal) && (<VoteOptions>
+          <p>{proposal.description || 'test description'}</p>
+
+          {!isProposalClosed(proposal) && (
+            <VoteOptions>
               <VoteButton onClick={() => onVote(proposal.proposalId, '1')}>
                 Vote for A
               </VoteButton>
               <VoteButton onClick={() => onVote(proposal.proposalId, '2')}>
                 Vote for B
               </VoteButton>
-            </VoteOptions>)
-          }
+            </VoteOptions>
+          )}
           <TotalVotes>Total Votes: {proposal.votes.length || 0}</TotalVotes>
         </ListItem>
       ))}
