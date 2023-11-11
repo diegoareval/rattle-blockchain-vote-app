@@ -26,7 +26,7 @@ async function main() {
   console.log('Proposal created. Transaction hash:', createProposalTx.hash);
 
   // Cast votes
-  const proposalId = 0; // Replace with the correct proposal ID
+  const proposalId = 0; // proposal ID
   const voteOption = 1; // Replace with 1 for option A or 2 for option B
 
   const voteTx = await contract.vote(proposalId, voteOption);
