@@ -59,13 +59,19 @@ export const ProposalList: React.FC<ProposalListProps> = ({
   refetch,
 }) => {
   const { createVote } = useVotesContract()
+  const isMetaMaskInstalled = typeof window.ethereum !== 'undefined'
   const onVote = async (id: string, option: string) => {
-    const result = await createVote(id, parseInt(option))
-    if (result) {
+    if (!isMetaMaskInstalled) {
+      alert('Prevent voting if MetaMask is not installed')
+      return
+    }
+    try {
+      await createVote(id, parseInt(option))
       refetch()
-      console.log('success')
-    } else {
-      console.error('Connection was cancelled, try again')
+      console.log('Vote successful')
+    } catch (error: any) {
+      alert(error.message)
+      console.error('Error while voting:', error.message)
     }
   }
   return (
