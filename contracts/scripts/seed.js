@@ -10,8 +10,8 @@ async function main() {
   const contract = new ethers.Contract(contractAddress, daoContractABI, wallet);
 
   // Create a proposal
-  const proposalTitle = 'RatherLab New';
-  const proposalDescription = 'This is an important blockchain company.';
+  const proposalTitle = ' Test Blockchain community Lab';
+  const proposalDescription = 'Create Biggest things. v1';
   const proposalDeadline = Math.floor(Date.now() / 1000) + 86400; // Proposal closes in 24 hours
   const minimumVotes = 10;
 

@@ -9,6 +9,11 @@ const List = styled.ul`
   padding: 0;
 `
 
+const ScrollableContainer = styled.div`
+  overflow-y: auto;
+  max-height: 30%; /* Adjust the max height as needed */
+`;
+
 const ListItem = styled.li`
   background-color: #fff;
   margin: 10px;
@@ -75,6 +80,7 @@ export const ProposalList: React.FC<ProposalListProps> = ({
     }
   }
   return (
+    <ScrollableContainer>
     <List>
       {proposals.map((proposal) => (
         <ListItem key={proposal.id}>
@@ -102,5 +108,6 @@ export const ProposalList: React.FC<ProposalListProps> = ({
         </ListItem>
       ))}
     </List>
+    </ScrollableContainer>
   )
 }
